@@ -1,0 +1,107 @@
+/*
+ * Stylesheet for Grease.cc
+ * For Rainer Schade, by Ruben Schade!
+ */
+
+/* Master Reset **************************************************************/
+
+html,body,h1,h2,h3,form,fieldset,
+nav ul, nav li {
+  border:0px;  /* superfluous unit for Opera */
+  list-style-type:none;
+  margin:0px;
+  padding:0px;
+  vertical-align:baseline;
+  word-wrap:normal;  /* no split hairs or words, please */
+}
+
+html {
+	padding:0 20px;
+	text-align:center;
+}
+body {
+	border-top:10px solid #a00;
+	font-family:"Helvetica Neue",Helvetica,"Liberation Sans",Arial,sans-serif;
+	font-size:13px;
+	margin:0px auto;
+	padding:40px 0;
+	width:600px;
+}
+a {
+	color:#a00;
+	text-decoration:underline;
+}
+a:hover {
+	text-decoration:none;
+}
+p {
+	line-height:18px;
+}
+
+/* Blocks ********************************************************************/
+
+header, footer {
+	margin:0 auto;
+	text-align:left;
+}
+
+/* Header ********************************************************************/
+
+header p {
+	margin:0px;
+	padding:0px;
+}
+
+/* Navigation ****************************************************************/
+
+nav ul {
+	width: 100%;
+	float: left;
+	margin: 20px 0;
+	padding: 0;
+	list-style: none;
+	background-color: #a00;
+}
+nav li {
+	float: left;
+}
+nav li a {
+	display: block;
+	padding: 8px 20px;
+	text-decoration: none;
+	font-weight: bold;
+	color: #fff;
+	border-right: 1px solid #fff;
+}
+nav li a:hover {
+	color: #000;
+	background-color: #e6e6e9;
+}
+
+/* Section *******************************************************************/
+
+section {
+	text-align:left;
+	padding-bottom:10px;
+}
+
+#byline {
+	font-size:20px;
+	font-weight:bold;
+	text-align:center;
+}
+
+.address {
+	font-weight:bold;
+	font-size:22px;
+}
+
+/* Footer ********************************************************************/
+
+footer {
+	border-top:1px solid #a00;
+	padding:10px 0;
+	border-bottom:10px solid #a00;
+}
+
+/* EOF */

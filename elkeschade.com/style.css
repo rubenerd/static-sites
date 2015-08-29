@@ -1,0 +1,108 @@
+/***********************************************************************/
+/*  MASTER RESET */
+
+html,body,h1,h2,h3, 
+nav ul,nav li {
+  border:0;
+  font-weight:normal;
+  list-style-type:none;
+  margin:0;
+  padding:0;
+  vertical-align:baseline;
+}
+
+/***********************************************************************/
+/*  TOP LEVEL */
+
+html {
+  font-size:62.5%;
+  padding:50px 20px;
+  text-align:center;
+}
+body {
+  background-color:black; /* white; */
+  border-radius:10px;
+  font-size:1.4em;
+  color:#fff;
+  font-family:"Helvetica Neue",Helvetica,"Source Sans Pro","Liberation Sans",sans-serif;
+  margin:0 auto;
+  width:720px;
+}
+
+h1,h2,h3 { font-family:"Gill Sans","Helvetica Neue",Helvetica,"Source Sans Pro","Liberation Sans",sans-serif; }
+h2 { font-size:2.4em }
+h3 { font-size:2.0em }
+a { color:deeppink }
+a:hover { color:black }
+hr {
+  background:black;
+  color:black;
+  height:1px;
+  border:0;
+  margin:2em 0em;
+}
+
+/***********************************************************************/
+/*  HEADER */
+
+header h1 {
+  font-size:5.0em;
+  text-align:center;
+  text-transform:uppercase;
+  letter-spacing:0.2em;
+}
+
+/***********************************************************************/
+/*  NAVIGATION */
+
+nav li { display:inline }
+nav li a {
+  border-radius:4px;
+  color:white;
+  margin:0 0.5em;
+  text-decoration:none;
+  padding:0 0.5em;
+  font-size:1.2em;
+  -o-transition:color .1s ease-out, background 0.2s ease-in;
+  -ms-transition:color .1s ease-out, background 0.2s ease-in;
+  -moz-transition:color .1s ease-out, background 0.2s ease-in;
+  -webkit-transition:color .1s ease-out, background 0.2s ease-in;
+  transition:color .1s ease-out, background 0.2s ease-in;
+}
+nav li a:hover {
+  background:deeppink;
+  color:black;
+}
+
+/***********************************************************************/
+/*  SECTION  */
+
+section {
+  padding:20px 0;
+  text-align:left;
+}
+article {
+  background:#f1f1f1;
+  color:black;
+  border-radius:10px;
+  padding:30px;
+}
+article img { border-radius:10px }
+
+/***********************************************************************/
+/*  HOME  */
+
+#home { 
+  background:url('http://files.rubenerd.com/elke/home.jpg') center no-repeat;
+  height:380px;
+}
+
+/***********************************************************************/
+/*  FOOTER  */
+
+footer {
+  
+}
+
+
+/* EOF */
