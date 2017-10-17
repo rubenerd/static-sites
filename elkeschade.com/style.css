@@ -93,7 +93,7 @@ article img { border-radius:10px }
 /*  HOME  */
 
 #home { 
-  background:url('http://files.rubenerd.com/elke/home.jpg') center no-repeat;
+  background:url('home.jpg') center no-repeat;
   height:380px;
 }
 
