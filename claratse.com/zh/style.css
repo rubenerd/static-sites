@@ -1,0 +1,116 @@
+---
+layout: nil
+---
+
+/*  MAIN RESET  ***************************************************************/
+
+html,body,h1,h2,h3,form,fieldset,nav,#card {
+	background:transparent;
+  border:0px;
+  list-style-type:none;
+	margin:0px;
+	padding:0px;
+	vertical-align:baseline;
+  word-wrap:normal;
+	font-weight:normal;
+}
+article,aside,details,figcaption,figure,
+footer,header,hgroup,nav,section {
+  display:block;
+}
+img {
+  display:inline; /* FIREFOX/NETSCAPE FIX */
+	font-style:italic;
+	color:#888;
+  max-width:500px;
+  border:none;
+}
+
+/*  TOP LEVEL  ****************************************************************/
+
+html { background-color:#97c94d; }
+body {
+  font:14px "Myriad Pro",Myriad,"Helvetica","Arial","Liberation Sans","Microsoft YaHei New","Microsoft Yahei","微软雅黑",宋体,SimSun,STXihei,"华文细黑",sans-serif;
+  text-align:left;
+}
+h1 { display:none; }
+#name {
+  color:#000;
+  text-decoration:none;
+  font-size:50px;
+  line-height:50px;
+}
+a {
+  color:#000;
+  text-decoration:none;
+  }
+#name:hover, a:hover, a:active {
+  color:#ed145b;
+  text-decoration:none;
+  -webkit-transition: color .25s linear, background-color .15s linear, background .15s linear;
+  -moz-transition: color .25s linear, background-color .15s linear, background .15s linear;
+  -o-transition: color .25s linear, background-color .15s linear, background .15s linear;
+  transition: color .25s linear, background-color .15s linear, background .15s linear;
+}
+
+/*  CARD  ******************************************************************/
+
+#meimg { text-align:center; color:black; }
+#me {
+  -webkit-border-radius: 200px;
+  -moz-border-radius: 200px;
+  border-radius: 200px;
+}
+#card {
+  margin:10px auto 0px auto;
+  background-image:url('http://claratse.com/image.jpg');
+  background-repeat:repeat-y;
+  background-size:282px auto;
+  width:300px;
+  padding:0px 0px 20px 280px;
+  background-color:white;
+}
+#card, #me {
+  -webkit-box-shadow: 0px 0px 5px 0px rgba(109, 109, 109, 1);
+  -moz-box-shadow:    0px 0px 5px 0px rgba(109, 109, 109, 1);
+  box-shadow:         0px 0px 5px 0px rgba(109, 109, 109, 1);
+}
+#text { padding:40px 20px 10px 20px; }
+p {
+  padding-top:10px;
+	color:#888;
+	line-height:17px;
+}
+
+/*  FOOTER  *******************************************************************/
+
+footer {
+  margin:20px;
+  text-align:center;
+}
+footer a { border:none }
+footer a:hover, footer a:active {	color:red; }
+
+/******************************************************************************/
+/* RESPONSIVE  ---------------------------------------------------------------*/
+/******************************************************************************/
+
+@media screen and (max-width: 600px) {
+  
+  #card {
+    margin:10px auto 0px auto;
+    background-size:300px;
+    padding:170px 0px 20px 0px;
+    background-color:white;
+    -webkit-box-shadow: 0px 0px 5px 0px rgba(109, 109, 109, 1);
+    -moz-box-shadow:    0px 0px 5px 0px rgba(109, 109, 109, 1);
+    box-shadow:         0px 0px 5px 0px rgba(109, 109, 109, 1);
+  }
+  #text {
+    padding:5px 20px 0px 20px;
+    background-color:white;
+  }
+  
+}
+
+/*  EOF  **********************************************************************/

@@ -1,0 +1,176 @@
+<html><body>
+
+<h2>QUESTION 4 QUESTION</h2>
+
+<pre>4) (Challenge Question) Write a perl program that will convert dates between formats. eg a date may be written in the form:
+12/12/2005 ( dd/mm/yyyy )
+or in the form:
+12 December 2005
+
+Your progam will accept a date in either format on the command line and will print out the same date in the opposite format. If an invalid date is put in (eg 45/3/2003) then the progam will print an error message stating that the date is invalid.
+
+Your program should have a minimum of 2 subroutines (eg one to convert from type x to type y and another to convert from type y to type x) but you may find that you can implement more subroutines (eg there may be a subroutine that validates dates).
+NOTE: See this weeks notes for a brief overview of efficient use of subroutines.
+
+For the converting of months you should store the months in an array. Consider which array may be more useful, a hash or a normal array.
+
+<h2>QUESTION 4 ANSWER</h2>
+
+The following is a little verbose and only
+does a few basic checks on the format.
+#!/usr/bin/perl
+
+%WordToDigit = qw (January  1 February 2 March 3 April 4 May 5 June 6 July 7 August 8 September 9 October 10 November 11 December 12);
+@DigitToWord = qw (January February March April May June July August September October November December);
+
+sub ValidDay($)
+{
+  $iDay = $_[0];
+
+  if (($iDay>31) ||($iDay<1))
+  {
+    return 0;
+  }
+    return 1;
+}
+
+sub ValidMonth($)
+{
+$iMonth = $_[0];
+
+
+if (($iMonth>12) ||($iMonth<1))
+{
+return 0;
+}
+return 1;
+}
+
+sub ConvertDigitsToWords($@)
+{
+($iIndex,@WordArray) = @_;
+return $WordArray[$iIndex];
+}
+
+sub ConvertWordsToDigit($%)
+{
+($strKey,%Array) = @_;
+return $Array{$strKey};
+}
+
+
+
+
+
+while ($_ = <STDIN>)
+{
+  chomp($_); #important; otherwise, '\n' in $_
+
+  if (m/(\d{1,2})\/(\d{1,2})\/(\d{4,4})/)
+  {
+    print "Found digit format: " . $& . "\n";
+    print "Individual parts are $1 $2 $3 \n";
+    if ((ValidDay($1)) && (ValidMonth($2)) )
+    {
+    printf("%d %s %d",$1,ConvertDigitsToWords($2-1,@DigitToWord),$3);
+}
+else
+{
+print "Error bad day or month \n";
+}
+  }
+  elsif(m/(\d{1,2})\s(\D{3,12})\s(\d{4,4})/)
+  {
+  print "Individual parts are $1 $2 $3 \n";
+ 
+  print "Found word format "  .  $& . "\n";
+  if ((ValidDay($1)) )
+  {
+$iMonth = ConvertWordsToDigit($2,%WordToDigit);
+if ($iMonth<1)
+{
+print" error bad month\n";
+}
+else
+{
+    printf("%d/%d/%d",$1,$iMonth,$3);
+}
+}
+else
+{
+print "Error bad day \n";
+}
+  }
+  else
+  {
+  print "Error bad date format Expecting dd/mm/yyyy or dd MonthInWords yyyy\n";
+}
+ 
+}
+
+<h2>QUESTION 5 QUESTION</h2>
+
+<p>5) (a) Write a perl program that reads in a text file containing
+one word per line. Create a hash containing the words read as
+keys and the number of times they have been read as the value.
+Print out each word and its frequency.<br />
+<br />
+(b) Expand the program you wrote in 5 (a) so that it can handle
+a text file with more than one word per line. Note, the words are separated by spaces. Print out each word and its frequency.</p>
+
+
+<h2>QUESTION 5 ANSWER</h2>
+
+5 (a)
+
+#!/usr/local/bin/perl -w
+
+print $ARGV[0]."\n";
+
+open (FILE,$ARGV[0]);
+while ($line = <FILE>)
+{
+        chomp($line);
+        if (exists($count{$line}))
+        {
+            $count{$line}++;
+        }
+        else
+        {
+            $count{$line} = 1;
+        }
+}
+
+while ( ($word,$occurrences) = each(%count))
+{
+    print $word."  ".$occurrences."\n";
+}
+
+5 (b)
+
+#!/usr/local/bin/perl -w
+
+#filename is passed in as argument
+
+open (FILE,$ARGV[0]);
+while ($line = <FILE>)
+{
+        chomp($line);
+        @words = split /\s+/,$line;
+        for ($i=0;$i<@words;$i++)
+        {
+            $word = $words[$i];
+            if (exists($count{$word}))
+            {
+                  $count{$word}++;
+            }
+            else
+            {
+                  $count{$word} = 1;
+            }
+        }
+}
+while ( ($word,$occurrences) = each(%count))
+{
+    print $word."  ".$occurrences."\n";
+}</pre></body></html>

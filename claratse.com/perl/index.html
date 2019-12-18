@@ -1,0 +1,901 @@
+<html>
+<head>
+<style>
+p {
+	color:red;
+}
+
+pre {
+	font:monospace;
+	color:green;
+	background-color:#eee;
+	max-width:550px;
+	padding:20px;
+}
+</style>
+</head>
+<body>
+
+<p>
+	<a href="#tut1">Tutorial 1</a>
+	<a href="#tut2">Tutorial 2</a>
+	<a href="#tut3">Tutorial 2</a>
+	<a href="./incomplete.html">Incomplete</a>
+</p>
+
+<h1>Notes</h1>
+
+<code>
+$ scalar variables (if starts with no, can only be one character long) - CASE SENSITIVE<br />
+(number, string, reference) $scalar. Concatenate with .<br />
+$_ default operand for all operations<br />
+&lt;STDIN&gt; reads one line and stores in $_<br />
+while (&lt;STDIN&gt;) executes iteration for each input line<br />
+length($_) returns length of $_ in chars<br /></code>
+<pre>
+  #!/usr/bin/perl -w
+  # I/O example
+
+  open (INFILE, "t1") or die "Input file: $!";
+  open (OUTF, ">t2") || die "Output file: $!";
+
+  while (<INFILE>)  {
+  	s/printf/print/g;  
+      # SEARCHES FOR PATTERN IN $_
+  	  # operates on $_; replaces printf with print
+      # if /i used instead, case-insensitive
+  	print OUTF $_;
+  }</pre>
+<br />
+<code>
+@ simple arrays<br />
+% associative arrays (hashes)<br />
+\d numeric [0-9]<br />
+\w word character [a-zA-Z0-9_]<br />
+\s whitespace (space tab newline)<br />
+\b word boundary<br />
+Uppercase will switch context (e.g. turning to NOT)<br />
+^ matches start of line (anchor)<br />
+$ matches end of line (anchor)<br />
+. matches any single character (except \n) (quantifier)<br />
+* matches 0 or more of previous character/group ( " for rest )<br />
+? matches 0 or 1 of prev char/group<br />
++ matches 1 or more of prev char/group<br />
+.* as many chars as you like<br />
+<br />
+Special read-only variables:<br />
+$&amp;: matched part of the string<br />
+$`: preceding part<br />
+$’: following part<br />
+<br />
+s/$from/$to/g substitution (of all)<br />
+m/(\d\s\w)/ matching E.G ($hours, $minutes) = ($time =~ m/(\d+):(\d+)/);<br />
+<br />
+my $length = @array;<br />
+<br />
+print "phrase $variable";<br />
+<br />
+@ARGV</code> contains command line arguments<br />
+<code>$first = $ARGV[0];<br />
+<br />
+print "request";<br />
+$_ = <STDIN>;</code> (or can this be assumed?)<br />
+<code>chomp;</code> (automatically chomps <code>$_</code>)<br />
+<br />
+<blockquote>
+  Back references:
+  The matched parts can be used to specify run-time values!:
+  /a(.)b\1\1\1/ matches axbxxx
+  /a(.)b(.)c\2d\1/ matches axbycydx
+  Split:
+  @words = split(/ +/, $_)
+  splits $_ into words (separator: one or more blanks)</blockquote>
+<br />
+<pre>
+if ( expression )
+{
+    do stuff;
+}
+elsif ( expression )
+{
+    do other stuff;
+}
+else
+{
+    do other other stuff;
+}
+
+e.g. if (/fred/)
+compares "fred" to $_. Matches 1, else 0.
+
+foreach $element (@array)
+{
+    do stuff;
+    can use $element for stuff;
+}
+
+for ( $i = 1; i = 21; i++ ) {
+    do things;
+}
+
+if ( 5 > 4 )
+if ('B' gt 'A')
+
+if ( 5 >= 5 )
+if ('B' ge 'A' )
+
+if ( 5 == 5 )
+if ( 'B' eq 'B' )
+
+if ( 5!=6 )
+if ('B' ne 'W' )
+</pre><br />
+
+<p>PRECEDENCE: (), + * ? {m,n}, anc ^ $ \b \B, | (alternation), =~, split and join</p>
+<p>Read cmd line arguments: https://stackoverflow.com/questions/3138649/programmatically-read-from-stdin-or-input-file-in-perl http://alvinalexander.com/perl/perl-command-line-arguments-read-args<br />
+<br />
+File handling: http://alumnus.caltech.edu/~svhwan/prodScript/perlGettingInput.html<br />
+<br />
+Read line by line: https://stackoverflow.com/questions/4505381/perl-read-line-by-line<br />
+<br />
+Associative arrays: http://www.comp.leeds.ac.uk/Perl/associative.html and http://www.tutorialspoint.com/perl/perl_arrays.htm</p>
+
+<h1 id="tut1">Tutorial 1</h1>
+
+<h2>exlperl.pl</h2>
+
+<pre>
+#!/usr/bin/perl
+
+use strict;
+use warnings;
+
+my @an_array=("arrays", "can", "be assigned","from lists
+in", "perl");
+my $length=@an_array;
+
+print "myarray is length $length \n";
+print "myarray is: @an_array \n"
+</pre>
+
+
+<h2>ex2perl.pl</h2>
+
+<pre>
+#!/usr/bin/perl
+
+$length=@ARGV;
+if($length==0)
+{
+        print "No args \n";
+}
+elsif($length==1)
+{
+        print "One arg \n";
+}
+else
+{
+        print "Lots of args \n";
+        foreach $argument (@ARGV)
+        {
+                print "we have another argument, it is $argument \n";
+        }
+}
+</pre>
+
+<h2>printname.pl</h2>
+
+<pre>
+#!/usr/bin/perl
+
+print "please enter your name: ";
+$_ = <STDIN>;
+chomp;
+print "hello $_\n";
+</pre>
+
+<p><strong>OR</strong></p>
+
+<pre>
+
+#!/usr/bin/perl
+
+use strict;
+use warnings;
+
+print "You entered @ARGV \n";
+print "hello $ARGV[0]\n";
+</pre>
+
+
+<h3>More complex HELLO WORLD</h3>
+
+<p>If there is no name provided, ask for a name. This is MY solution.</p>
+
+<pre>
+#!/usr/bin/perl
+
+use strict;
+use warnings;
+
+if (@ARGV)
+{
+        print "hello $ARGV[0]\n";
+}
+else
+{
+        my $name = '';
+        do {
+                # Use single quotes as often as possible
+                print 'Please enter a name: ';
+                $name = <STDIN>;
+                chomp($name);
+        } while ($name eq '');
+        print "hello $name\n";
+}
+</pre>
+
+<p>This is Massimo's solution.</p>
+
+<pre>
+!/usr/bin/perl
+
+if(@ARGV>0)
+{
+        printf("hello $ARGV[0]\n");
+}
+else
+{
+        printf("Please enter a name: ");
+        $_ = <STDIN>;
+        chomp($_);
+        printf("hello $_\n");
+}
+</pre>
+
+
+<h2>readingwriting.pl</h2>
+
+<pre>
+
+#!/usr/bin/perl
+
+open(INFILE, "file1") || die "can't open the file $!\n";
+open (OUTFILE, ">file2") || die "can't open the file
+$!\n";
+while(<INFILE>)
+{
+        print OUTFILE $_;
+}
+</pre>
+
+<h2>numbers.pl</h2>
+
+<pre>
+
+#!/usr/bin/perl
+
+use strict;
+use warnings;
+
+my ($odd, $even);
+
+for(my $i = 1; $i < 21; $i++)
+{
+        if ($i % 2)
+        {
+                $odd += $i;
+                print ("$i - $odd\n");
+        }
+        else
+        {
+                $even += $i;
+                my $calculated = $even / 2;
+                print ("$i - $calculated\n");
+        }
+}
+
+</pre>
+
+<p>Provided answer:</p>
+
+<pre>
+4) Write a script that will print the numbers 1 through to 20 on the screen, each on a separate line. If the number is even then it should calculate the sum of all the even numbers prior to and including the number itself. Then halve that sum and print it. If it is an odd number then it should print the sum of every odd number prior to and including it. (Hint: Think about how you are going to implement this before you start coding, ie are you going to use variables to track things or is there an easy way to compute the needed values?)
+
+Here is a fairly straight forward answer where you keep a
+running total of the odd and even numbers.
+
+#!/usr/bin/perl
+
+$odds=0;
+$evens=0;
+
+for ($i=1;$i<=20;$i++)
+{
+  print $i." - ";
+  if ($i%2 == 0)
+  {
+      $evens=$evens+$i;
+      print (($evens/2)."\n");
+  }
+  else
+  {
+      $odds=$odds+$i;
+      print $odds."\n";
+  }
+}
+
+
+
+There are other ways to do this. The solution below is based on the following observation. If you need to sum the numbers from
+1 to n then match 0 to n, 1 to n-1, 2 to n-2 etc. The sum of each of these pairs is n.
+
+
+#!/usr/bin/perl
+
+for($i=1;$i<=20;$i++)
+{
+        if ($i % 2 == 0)
+        {
+                $s = ($i/2+1)*$i/4;
+        }
+        else
+        {
+                $s = ($i+1)*($i+1)/4;
+
+        }
+
+        printf("%d %d\n",$i, $s);
+
+}
+</pre>
+
+<h1 id="tut2">Tutorial 2</h1>
+
+<h2>filter.pl (actually skills1)</h2>
+
+<p>Only print numbers. aka lunch break Perl</p>
+
+<pre>
+#!/usr/bin/perl
+
+# Check if number?? =~ /^[+-]?\d+$/
+
+use strict;
+use warnings;
+
+while (<STDIN>) {
+        if ($_ =~ /[a-zA-Z]/)
+        {
+                print "NaN: Contains Letters.\n";
+        }
+        else
+        {
+                if ( $_ =~ m/\d/)
+                {
+                        chomp;
+                        print "$_ contains numbers.\n";
+                        # if ( $_ =~ /^\w+$/ )
+                        if ( $_ =~ m/\D/ )
+                        {
+                                print "Also contains invalid chars.\n";
+                        }
+                }
+        }
+}
+
+exit 0;
+</pre>
+
+<p>Provided answer:</p>
+
+<pre>
+#!/usr/bin/perl
+
+
+while (<STDIN>)
+{
+        if ($_=~m/\d/)
+        {
+                print  $_;
+        }
+
+}
+</pre>
+
+
+<h2>skills1.pl and skills3.pl</h2>
+
+<p>Works, but is inefficient.</p>
+
+<pre>
+#!/usr/bin/perl
+
+use strict;
+use warnings;
+
+while (<STDIN>) {
+
+        if ( $_ =~ m/\d/ )
+        {
+                if ( ($_ > 6000) || ($_ < -6000) )
+                {
+                        print $_ ;
+                }
+        }
+
+}
+</pre>
+
+<p>OR THIS... Which works too, but I don't really know what those last \d's were all about. You can also use <code>if ($_=~m/(\d{3,})/)</code></p>
+
+<pre>
+#!/usr/bin/perl
+
+use strict;
+use warnings;
+
+while (<STDIN>) {
+        if ( $_ =~ m/[6-9]\d\d\d/ )
+        {
+                print $_;
+        }
+}
+</pre>
+
+<h2>skills4.pl</h2>
+
+<p>Input, read file, with swapping.</p>
+
+<pre>
+
+#!/usr/bin/perl
+
+use strict;
+use warnings;
+
+if ( @ARGV < 3 )
+{
+        die "Expecting 3 arguments\n";
+}
+
+my $file = $ARGV[0];
+my $word1 = $ARGV[1];
+my $word2 = $ARGV[2];
+
+open(INPUT, $file)
+        or die ("Couldn't open $file for reading");
+
+while (&lt;INPUT&gt;) {
+        my $currentLine = $_;
+        $currentLine =~ s/$word1/$word2/ig;
+        print $currentLine;
+}
+
+close(INPUT);
+</pre>
+
+<p>Provided answer:</p>
+
+<pre>
+#!/usr/bin/perl
+if (@ARGV<3)
+{
+        #We exit because less than 3 arguments are given.
+        die    "Expecting 3 args";
+}
+
+#Open the file. If an error occurs exit.
+open INFILE, "<$ARGV[0]" or die "error openning file";
+while (<INFILE>)
+{
+        s/\b$ARGV[1]\b/$ARGV[2]/g;
+        print $_
+
+
+}
+</pre>
+
+
+<h2>skills5.pl</h2>
+
+<pre>
+#!/usr/bin/perl
+
+# Read from STDIN
+# Print a count of how many lines begin/end with abc
+
+my $begin = 0;
+my $end = 0;
+
+while (<STDIN>) {
+        if ( $_ =~ m/^abc/ )
+        {
+                $begin++;
+                $count++;
+        }
+        else
+        {
+                if ( $_ =~ m/abc$/ )
+                {
+                        $end++;
+                        $count++;
+                }
+        }
+
+        print "Lines beginning with abc: $begin\n";
+        print "Lines ending with abc: $end\n";
+        print "Lines doing either: $count\n";
+}
+
+exit 0;
+</pre>
+
+<p>Demonistrating OR in Perl which is a pipe. (Provided answer)</p>
+
+<pre>
+#!/usr/bin/perl
+
+
+while (<STDIN>)
+{
+        if ($_=~m/^abc|abc$/)
+        {
+                $count++;
+        }
+}
+
+print $count;
+</pre>
+
+
+<h1 id="tut3">Tutorial 3</h1>
+
+<h2>example.pl</h2>
+
+<pre>
+#!/usr/bin/perl -w
+
+%my_hash = ("Massimo", "Faculty of IT", "Adel", "Faculty of Eng",
+                "Xingjian", "Faculty of IT");
+            # key, value, key, value, ...
+
+print ("Value for Massimo: " . $my_hash{"Massimo"});
+
+$my_hash{"John"} = "Faculty of Business";
+
+print ("\nAll keys : values in stored order:\n");
+
+foreach $key (keys %my_hash)
+        {
+                print $key . ": " . $my_hash{$key} . ", ";
+        }
+
+print ("\nAll keys : values with keys alphabetically sorted:\n");
+
+foreach $key (sort keys %my_hash)
+        {
+                print $key . ": " . $my_hash{$key} . ", ";
+        }
+
+print("\n");
+</pre>
+
+<h2>people.pl</h2>
+
+<pre>
+#!/usr/bin/perl
+
+@people = ('Bob', 'Fred', 'Sally');
+
+$var = @people;
+
+print "The people are @people and there are $var of them.\n";
+</pre>
+
+<h2>perlarray.pl</h2>
+
+<pre>
+#!/usr/bin/perl
+
+use strict;
+use warnings;
+
+my @words1 = ("red","green","blue","white","blue","red");
+my @words2 = qw(one two three four);
+my $word1Length = @words1;
+my $word2Length = @words2;
+
+print "Both words1 and words2 are simple arrays\n";
+print "Array words1 contains $word1Length values, and words2 contains" .
+" $word2Length values\n";
+
+my $aword;
+print "Printing array words1...............\n";
+
+foreach $aword (@words1)
+{
+        print "The word is " . $aword ."\n";
+}
+
+print "Printing array words2...............\n";
+foreach $aword (@words2)
+{
+        print "The word is " . $aword ."\n";
+}
+
+print "Changing some words...............\n";
+$words1[0]="top";
+$words1[1]="side";
+$words1[2]="left";
+
+foreach $aword (@words1)
+{
+        print "The word is " . $aword ."\n";
+}
+</pre>
+
+
+
+<h2>test1.pl</h2>
+
+<pre>
+#!/usr/bin/perl
+
+# No, this does not work.
+# ["Fred"] => "CEO"
+# ["Harry"] => "General Manager"
+# ["Mark"] => "Cleaner"
+# ["Sally"] => "Programmer"
+
+%org = ("Fred", "CEO",
+        "Harry", "General Manager",
+        "Mark", "Cleaner",
+        "Sally", "Programmer");
+
+print "Fred is the " . $org{"Fred"} . "\n";
+print "Harry is the " . $org{"Harry"} . "\n";
+print "Mark is the " . $org{"Mark"} . "\n";
+print "Sally is the " . $org{"Sally"} . "\n\n";
+
+print "There was a line of promotions.\n\n";
+
+$org{"Sally"} = "Head Programmer";
+print "Sally is now the " . $org{"Sally"} . "\n";
+</pre>
+
+
+<h2>test2.pl</h2>
+
+<pre>
+#!/usr/bin/perl
+
+%words = (
+        "one" => "red",
+        "two" => "red",
+        "three" => "green as grass",
+        "four" => 6);
+
+print "words is an associative array\n";
+print $words{"one"} . "\n";
+print $words{"two"} . "\n";
+print $words{"three"} . "\n";
+print $words{"four"} . "\n";
+
+print $words{$ARGV[0]} . "\n";
+</pre>
+
+<h2>test3.pl</h2>
+
+<pre>
+!/usr/bin/perl
+
+use strict;
+use warnings;
+
+my %hash = ("Rurouni Kenshin", "Nobuhiro Watsuki",
+         "Chrono Crusade", "Daisuke Moriyama",
+         "Inuyasha", "Rumiko Takahashi",
+         "Fruits Basket", "Natsuki Takaya");
+
+my $key;
+
+foreach $key ( keys %hash )
+{
+        print $key . "\n";
+        print $key . " - " . $hash{$key} . "\n";
+}
+
+print keys(%hash); # prints keys
+print "\n";
+print keys(%hash) . "\n"; # prints number of keys if anything is added
+
+print values(%hash); #prints all values
+print "\n";
+print values(%hash) . "\n"; # prints number of values if anything added
+
+print each(%hash); # returns the last one?
+print "\n";
+print each(%hash) . "\n"; #returns first key for some reason
+
+# Don't know how to use this
+#
+# foreach $key (key %hash)
+# {
+#       delete $hash($key);
+# }
+</pre>
+
+<h2>skills1.pl</h2>
+
+<p>Print out each line</p>
+
+<pre>
+#!/usr/bin/perl
+
+use strict;
+use warnings;
+
+my @array = ( "zero", "one", "two", "three", "four", "five", "six",
+        "seven", "eight", "nine");
+
+foreach ( @array ) {
+        print "$_ \n";
+}
+</pre>
+
+<p>Can also use the below, but I don't get it:</p>
+
+<pre>
+foreach $_ (@rray)
+{
+    print $_ . "\n";
+}
+</pre>
+
+
+<h2>skills2.pl</h2>
+
+<pre>
+#!/usr/bin/perl
+
+my @array = ("zero", "one", "two", "three", "four", "five", "six",
+                "seven", "eight", "nine");
+
+# Takes one arguement, STDIN
+$index = $ARGV[0];
+
+# Return element in the array corresponding to the index
+print $array[ $index ] . "\n";
+print "Entered value was $index\n";
+</pre>
+
+<p>I don't know why the answer I tried like the provided answer didn't work for me:</p>
+
+<pre>
+print "$array[$ARGV[0]]\n";
+</pre>
+
+<p>Forgot to set a failsafe though, here's a second provided answer:</p>
+
+<pre>
+#!/usr/bin/perl
+
+$MyArray[0]="Zero";
+$MyArray[1]="One";
+$MyArray[2]="Two";
+$MyArray[3]="Three";
+$MyArray[4]="Four";
+$MyArray[5]="Five";
+$MyArray[6]="Six";
+$MyArray[7]="Seven";
+$MyArray[8]="Eight";
+$MyArray[9]="Nine";
+
+if (@ARGV>0)
+{
+        $ValueInput= $ARGV[0];
+        print "\nInput: ";
+        print $ValueInput;
+        print "\nArray value: ";
+        print $MyArray[$ValueInput];
+        print "\n";
+}
+else
+{
+        print "Expecting an argument\n";
+}
+</pre>
+
+<h2>skills3.pl</h2>
+
+<pre>
+!/usr/bin/perl
+
+use strict;
+use warnings;
+
+my %hash = (
+          "zero", 0,
+          "one", 1,
+          "two", 2,
+          "three", 3,
+          "four", 4,
+          "five", 5,
+          "six", 6,
+          "seven", 7,
+          "eight", 8,
+          "nine", 9 );
+
+my $key = $ARGV[0];
+
+print $key . ": " . $hash{$key} . "\n";
+
+# foreach my $key (keys %hash) {
+#        print $key . ": " . $hash{$key} . "\n";
+# }
+</pre>
+
+<p>Associative array <code>'zero' =&gt;" '0',</code> ... How come that didn't work for me? (Probably because you didn't do it right.) Also could have used qw().<br />
+Could have used <code>print "$numbers{$ARGV[0]}\n";</code> after the array?<br />
+Final provided answer:</p>
+
+<pre>
+#!/usr/bin/perl
+
+%MyArray=("Zero",0,"One",1,"Two",2,"Three",3,"Four",4,"Five",5,"Six",6,"Seven",7,"Eight",8,"Nine",9);
+
+if (@ARGV>0)
+{
+        $ValueInput= $ARGV[0];
+        print "\nInput: ";
+        print $ValueInput;
+        print "\nArray value: ";
+        print $MyArray{$ValueInput};
+        print "\n";
+}
+else
+{
+        print "Expecting an argument\n";
+}
+</pre>
+
+
+
+<h2>skills4.pl</h2>
+
+<p>Haven't finished this yet, I fell asleep.</p>
+
+<pre>
+#!/usr/bin/perl
+
+use strict;
+use warnings;
+
+# Convert dates between formats DD/MM/YYYY, day month year
+
+# Months should be stored in an array
+my %months = (  1, "January",
+                2, "February",
+                3, "March",
+                4, "April",
+                5, "May",
+                6, "June",
+                7, "July",
+                8, "August",
+                9, "September",
+                10, "October",
+                11, "November",
+                12, "December" );
+
+# Accept date in either format on command line
+
+if (<STDIN> =~ m/\b[1-9]|[1-2][0-9]|3[0-1]\b\/[0-12]\\d\d\d\d/)
+{
+        print "In format ddmmyyyy: <STDIN>";
+}
+
+# If invalid date, program prints error message
+
+# Print out date in opposite format
+</pre>
