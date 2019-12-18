@@ -1,15 +1,16 @@
 # static-sites
 
-This serves as a backup for my various static sites. With one git clone in /var from a trusty Ansible script, I can restore several sites to my ~~VPS~~ cloud instance, and track their changes.
+This repo contains static sites I host for myself and my family. On [FreeBSD](https://www.freebsd.org/), of course!
 
-My primary site and blog is over on [Rubénerd](https://rubenerd.com/) thesedays, which is hosted in its [own repo](https://github.com/rubenerd/rubenerd-com).
+My primary site and blog is over on [Rubenerd](https://rubenerd.com/), which is hosted in its [own repo](https://github.com/rubenerd/rubenerd-com).
 
 ## Sites here
 
+* [claratse.com](http://claratse.com/) – my girlfriend's business profile site
 * [elkeschade.com](http://elkeschade.com/) – my sister's old review site
 * [grease.cc](http://grease.cc/) – my father's consulting business card
-* [ruben.coffee](http://ruben.coffee/) – my pointless site for a new pointless TLD
-* [ruben.tv](http://ruben.tv) – a landing page for video links
-* [sasara.moe](http://sasara.moe) – my tribute to everyone's favourite ToHeart 2 character
+* [ruben.coffee](http://ruben.coffee/) – because everyone likes coffee
+* [ruben.tv](http://ruben.tv) – a landing page for media links
+* [sasara.moe](http://sasara.moe) – landing page for this web server
 * [tigerintherain.com](http://tigerintherain.com/) – tribute to Michael Franks
 
