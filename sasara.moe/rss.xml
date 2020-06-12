@@ -1,0 +1,58 @@
+<rss version="2.0" xml:base="http://sasara.moe/">
+
+<channel>
+
+  <title>sasara.moe</title> 
+  <link>http://sasara.moe/</link>
+  <description>Clara and Ruben's moe moe gateway server on OrionVM.</description>
+  <copyright>© 2014–2020 Ruben Schade</copyright>
+  <language>en-SG</language>
+  <generator>Vim</generator>
+  <lastBuildDate>Fri, 05 Jun 2020 09:10:20 +1000</lastBuildDate>
+  <pubDate>Fri, 05 Jun 2020 09:10:20 +1000</pubDate>
+  <docs>http://cyber.law.harvard.edu/rss/rss.html</docs>
+  <ttl>60</ttl>
+
+  <image>
+    <url>http://sasara.moe/rss.png</url>
+    <title>sasara.moe</title> 
+    <link>http://sasara.moe/</link>
+    <width>144</width>
+    <height>72</height>
+    <description>Clara and Ruben's moe moe gateway server on OrionVM.</description>
+  </image>
+
+  <item>
+    <title>Another sparse RSS feed to add you reader!</title>
+    <link>http://sasara.moe/</link>
+    <guid isPermaLink="false">sasara-moe-another-rss-feed</guid>
+    <pubDate>Fri, 05 Jun 2020 09:10:20 +1000</pubDate>
+    <description>Added an RSS feed to sasara.moe. Why? Don't know yet.</description>
+  </item>
+
+  <item>
+    <title>Retina update</title>
+    <link>http://sasara.moe/</link>
+    <guid isPermaLink="false">sasara-moe-retina-update</guid>
+    <pubDate>Thu, 27 Feb 2020 09:07:20 +1000</pubDate>
+    <description>Added Retina images, more links, and a FreeBSD button.</description>
+  </item>
+
+  <item>
+    <title>Hey look, links!</title>
+    <link>https://sasara.moe/</link>
+    <guid isPermaLink="false">sasara-moe-added-sites</guid>
+    <pubDate>Sat, 29 Aug 2015 23:29:19 +1000</pubDate>
+    <description>sasara.moe is now a directory of Clara's and my sites.</description>
+  </item>
+
+  <item>
+    <title>New domain registered</title>
+    <link>https://sasara.moe/</link>
+    <guid isPermaLink="false">sasara-moe-registered</guid>
+    <pubDate>Thu, 13 Mar 2014 21:39:41 +1000</pubDate>
+    <description>Registered our first .moe domain! How moe moe.</description>
+  </item>
+
+</channel>
+</rss>
